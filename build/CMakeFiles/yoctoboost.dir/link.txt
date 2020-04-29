@@ -1,0 +1,1 @@
+/usr/bin/c++   -Wall -Wextra -Werror -Wsuggest-override -Wno-register -Wno-missing-braces -Wno-unknown-pragmas -fdiagnostics-show-option -g   CMakeFiles/yoctoboost.dir/src/main.cpp.o  -o yoctoboost  /vcpkg/installed/x64-linux/debug/lib/libboost_program_options.a 
