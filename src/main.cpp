@@ -3,6 +3,7 @@
 
 // STL
 #include <iostream>
+#include <stdexcept>
 
 int main(int argc, char** argv) {
     boost::program_options::options_description desc("Allowed options");
@@ -18,18 +19,19 @@ int main(int argc, char** argv) {
         
         if (vm.count("help")) {
             std::cout << desc << std::endl;
-            return 1;
+            return 0;
         }
         
-        if (vm.count("nb")) {
-            std::cout << "Number: " << vm["nb"].as<int>() << '.' << std::endl;
-        } else {
-            std::cout << "Number was not set.\n" << desc << std::endl;
+        if (!vm.count("nb")) {
+            throw std::invalid_argument("Number was not set");
         }
+        
+        std::cout << "Number: " << vm["nb"].as<int>() << '.' << std::endl;
     }
     catch (const std::exception& e) {
-        std::cerr << "Error: " << e.what() << '\n';
+        std::cerr << "Error: " << e.what() << ".\n";
 	std::cout << desc << std::endl;
+	return 1;
     }
 
     return 0;
